@@ -1,6 +1,5 @@
-const { celebrate, Joi, CelebrateError  } = require('celebrate');
+const { celebrate, Joi, CelebrateError } = require('celebrate');
 const validator = require('validator');
-const BadRequestErr = require('../errors/BadRequestErr');
 
 const validateURL = (value) => {
   if (!validator.isURL(value, { require_protocol: true })) {

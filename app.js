@@ -12,7 +12,11 @@ const { createUser, signin } = require('./controllers/users');
 const auth = require('./middlewares/auth');
 const NotFoundErr = require('./errors/NotFoundErr');
 
-mongoose.connect('mongodb://127.0.0.1:27017/bitfilmsdb');
+const MONGO_URL_DEV = 'mongodb://localhost:27017/moviesdb';
+
+const { MONGO_URL, NODE_ENV } = process.env;
+
+mongoose.connect(NODE_ENV === 'production' ? MONGO_URL : MONGO_URL_DEV);
 
 const { PORT = 3000 } = process.env;
 const app = express();
