@@ -84,6 +84,8 @@ const updateUser = async (req, res, next) => {
   } catch (error) {
     if (error.name === 'ValidationError') {
       next(new BadRequestErr('Невозможно обновить данные пользователя'));
+    } else if (error.code === 11000) {
+      next(new ConflictErr('Пользователь с таким email уже существует'));
     }
     next(error);
   }
